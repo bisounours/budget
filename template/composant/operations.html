@@ -1,0 +1,33 @@
+{loop="liste_operation"}
+	<li onclick="affichage_modification({$value.id})">
+		<table class="table_operation">
+			<tr>
+				<td class="td_date" id="td_date_{$value.id}">
+					{$value.date|substr:6}/{$value.date|substr:4,2}/{$value.date|substr:0,4} 
+				</td>
+				<td rowspan = "2" class="td_libelle" id="td_libelle_{$value.id}">
+					{"\'"|str_replace:"'",$value.libelle}
+				</td>
+			 	<td id="td_montant_{$value.id}" {if="$value.type == 'D'"} class="td_montant montant_depense" {else} class="td_montant montant_revenu" {/if} >
+					{$value.montant|number_format:2,',',' '} &euro;
+				</td> 
+			</tr>
+			<tr>
+				<td id="td_categorie_{$value.categorie.id}" class="td_categorie">
+					{"\'"|str_replace:"'",$value.categorie.libelle}
+				</td>
+				<td id="td_compte_{$value.compte.id}" class="td_compte">
+			 		{$value.compte.libelle}
+			 	</td>
+			</tr>
+		</table>
+		<input type="hidden" id="hid_type_{$value.id}" value="{$value.type}" />
+		<input type="hidden" id="hid_categorie_{$value.id}" value="{$value.categorie.id}" />
+		<input type="hidden" id="hid_compte_{$value.id}" value="{$value.compte.id}" />
+		{if condition="$value.frequence"}
+			<input type="hidden" id="hid_frequence_{$value.id}" value='{$value.frequence.frequence}' />
+			<input type="hidden" id="hid_frequence_id_{$value.id}" value='{$value.frequence.id}' />
+			<input type="hidden" id="hid_frequence_date_fin_{$value.id}" value='{$value.frequence.dateFin}' />
+		{/if}
+	</li>
+{/loop}

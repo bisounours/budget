@@ -1,0 +1,39 @@
+body{
+	font-family: arial;
+}
+
+input[type="text"],input[type="password"]{
+	height:25px;
+	width: 200px;
+	font-size: 16px;
+}
+
+#div_identification{
+	position:absolute;
+	left:50%;
+	width:450px;
+	margin-left: -225px;
+	padding-bottom: 20px;
+	top:0px;
+	background-color: #0174DF;
+	border-radius: 0 0 30px 30px;
+	text-align: center;
+	color: white;
+}
+
+#div_identification table{
+	margin:auto;
+	text-align: right;
+	margin-bottom: 30px;
+}
+
+#euro{
+	font-size: 100px;
+}
+
+#message{
+	color:#FF8000;
+	font-weight: bold;
+	margin-top: 100px;
+	margin-bottom: 10px;
+}

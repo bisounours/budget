@@ -1,0 +1,56 @@
+/* FICHIER CSS POUR LA PAGE CATEGORIE.HTML */
+/* ========================================================= */
+
+/* DIV CREATION CATEGORIE */
+/* ========================================================= */
+#div_create_categorie{
+	text-align: center;
+}
+
+
+/* DIV LISTE CATEGORIE */
+/* ========================================================= */
+#div_categorie{
+	position: absolute;
+	min-width:20%;
+	top:35px;
+	left: 0px;
+	min-height: 200px;
+	border-right: 1px solid #0174DF;
+}
+
+#div_categorie ul{
+	margin: 0px;
+	padding: 0px;
+}
+
+#div_categorie li{
+	padding: 10px;
+	text-align: right;
+	border-bottom: 1px solid orange;
+}
+
+#div_categorie li:hover{
+	cursor: pointer;
+	background-color: #8BA6BD;
+}
+
+/* DIV DETAIL CATEGORIE */
+/* ========================================================= */
+#div_detail_categorie{
+	position: absolute;
+	min-width:50%;
+	top:75px;
+	left: 30%;
+	min-height: 200px;
+	text-align: right;
+}
+
+#div_detail_categorie table tr td:last-child{
+	text-align: left;
+	padding: 10px;
+}
+
+#div_detail_categorie table{
+	margin-bottom: 25px;
+}

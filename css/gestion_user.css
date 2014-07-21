@@ -1,0 +1,58 @@
+/* FICHIER CSS POUR LA PAGE GESTION_USER.HTML */
+/* ========================================================= */
+
+/* DIV CREATION UTILISATEUR */
+/* ========================================================= */
+
+#div_create_user{
+	top: 400px;
+	width : 40%;
+	left:5%;
+	text-align: center;
+}
+
+#div_create_user table{
+	margin:auto;
+	text-align: right;
+	margin-bottom: 10px;
+}
+
+/* DIV GESTION UTILISATEURS */
+/* ========================================================= */
+
+#div_list_user{
+	width : 40%;
+	top: 100px;
+	left : 50%;
+}
+
+#div_list_user{
+	width: 500px;
+}
+
+#div_list_user ul li span{
+	margin-left: 10px;
+	margin-bottom: 10px;
+	vertical-align: middle;
+}
+
+#div_list_user ul li{
+	font-size: 20px;
+}
+
+/* DIV MODIFICATION UTILISATEUR COURANT */
+/* ========================================================= */
+
+#div_update_user{
+	left:5%;
+	width : 40%;
+	top: 100px;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+#div_update_user table{
+	margin:auto;
+	text-align: right;
+	margin-bottom: 10px;
+}

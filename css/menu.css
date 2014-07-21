@@ -1,0 +1,139 @@
+#menu{
+	position:fixed;
+	top:0px;
+	left:0px;
+	width: 100%;
+	background-color: #0174DF;	
+	height:45px;
+	z-index: 50;
+	box-shadow: 0px -3px 5px 5px black;
+	line-height: 25px;
+}
+
+#menu a{
+	text-decoration: none;
+	color: inherit;
+}
+
+
+#menu a:visited{
+	color: inherit;
+}
+
+#menu ul{
+	float: left;
+	list-style: none;
+	padding-left: 10px;
+	padding-right: 50px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin: 0px;
+	background-color: #0174DF;
+	color: white;
+	font-size: 20px;
+	font-family: arial;
+	border-right:1px solid white;
+}
+
+#menu ul:hover{
+	cursor: pointer;
+	border-right:1px solid #FF8000;
+	color: #FF8000;
+}
+
+#menu ul:hover li ul{
+	display: block;
+}
+
+#menu ul:focus li ul{
+	display: block;
+}
+
+
+#menu ul li ul{
+	float: none;
+	list-style: none;
+	display: none;
+	padding: 0px;
+	color:white;
+	padding-right: 0px;
+	padding-top: 15px;
+	border-right:0px;
+}
+
+#menu ul li ul:hover{
+	border-right:0px;
+	color: white;
+}
+
+#menu ul li ul li:hover{
+	cursor: pointer;
+	color:#FF8000;
+}
+
+#lnk_deconnexion{
+	position: absolute;
+	right: 10px;
+	top:7px;
+}
+
+#logo{
+	width: 25px;
+	margin: 0px;
+	padding: 0px;
+	background-color: white;
+	border-radius: 50%;
+	color:#0174DF;
+	line-height: 25px;
+	text-indent: 4px;
+	vertical-align: bottom;
+	font-size: 25px;
+}
+
+#menu ul:first-child{
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+#menu ul:first-child:hover #logo{
+	cursor: pointer;
+	background-color: #FF8000;
+}
+
+#deconnexion{
+	position: relative;
+	top:3px;
+	right: 10px;
+	width : 25px;
+	height: 25px;
+	border: 3px solid white;
+	border-top: 0px;
+	border-radius: 50%;
+}
+
+#deconnexion:before{
+	content:"|";
+	color: white;
+	font-size: 20px;
+	position: relative;
+	left: 10px;
+	top: -9px;
+}
+
+#deconnexion:hover{
+	border: 3px solid #FF8000;
+	border-top: 0px;
+}
+
+#deconnexion:hover:before{
+	color: #FF8000;
+}
+
+#deconnexion:hover:after{
+	content:"Deconnexion";
+	color: #FF8000;
+	position: relative;
+	left:-135px;
+	font-size: 20px;
+	top: 0px;
+}

@@ -1,0 +1,23 @@
+/* FICHIER CSS POUR LA PAGE CREATE_OPERATION.HTML */
+/* ========================================================= */
+
+/* DIV CREATION OPERATION */
+/* ========================================================= */
+
+#tab_create_operation tr td:first-child{
+	text-align: right;
+}
+
+#tab_create_operation tr td{
+	padding: 5px;
+}
+
+.td_frequence{
+	visibility: hidden;
+}
+
+#btn_ajouter{
+	position: absolute;
+	right: 250px;
+	margin-top: 20px;
+}

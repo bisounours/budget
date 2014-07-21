@@ -1,0 +1,10 @@
+{loop="user_list"}
+	<li id="li_user_{$value.id}">
+		<span class="icon corbeille" onclick="controle_suppression({$value.id})" title="Supprimer ce compte"></span>
+		<span class="icon cle" onclick="controle_reset_password({$value.id})" title="Réinitialiser le mot de passe"></span>
+		<span>{$value.login}</span>
+	{else}
+	<li>
+		Aucun autre utilisateur cr&eacute;&eacute;
+	</li>
+{/loop}

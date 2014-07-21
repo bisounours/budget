@@ -1,0 +1,24 @@
+{include="composant/head"}
+<link rel="stylesheet" type="text/css" href="../css/liste_operation.css">
+<link rel="stylesheet" type="text/css" href="../lib/datepicker/css/datepicker.css">
+<script type="text/javascript" src="../lib/datepicker/js/lang/fr.js"></script>
+<script type="text/javascript" src="../lib/datepicker/js/datepicker.js"></script>
+<script type="text/javascript" src="../lib/js/ajax.js"></script>
+<script type="text/javascript" src="../js/formulaire.js"></script>
+
+<div id="div_arreter">
+	Date d'arr&ecirc;t : <input type="text" id="txt_date" placeholder="jj/mm/aaaa"/>
+	<input type="button" class="btn_gris" value="Annuler" onclick="annuler_arret()">
+	<input type="button" value="Arr&ecirc;ter" onclick="arret()">
+</div>
+<div id="div_liste_operation">
+	<input type="text" id="txt_recherche" name="txt_recherche" placeholder="Rechercher..." />
+	<ul>
+		{include="composant/operations"}
+	</ul>
+</div>
+<div id="div_update_operation">
+			
+</div>
+<script type="text/javascript" src="../js/liste_operation.js"></script>
+{include="composant/foot"}
