@@ -1,4 +1,4 @@
-budget
+G€STION
 ======
 
 Application permettant la gestion des dépenses.
