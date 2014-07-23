@@ -11,12 +11,16 @@
 			id INTEGER NOT NULL PRIMARY KEY ASC ,
 			libelle TEXT NOT NULL ,
 			user_id INTEGER NOT NULL,
+			budget REAL,
+			debut_mois INTEGER,
 			FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE CASCADE)";
 
 		$SQL_CREATE_TABLE_COMPTE = "CREATE TABLE compte(
 			id INTEGER NOT NULL PRIMARY KEY ASC ,
 			libelle TEXT NOT NULL ,
 			user_id INTEGER NOT NULL,
+			solde REAL,
+			date_solde INTEGER,
 			FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE CASCADE)";
 
 		$SQL_CREATE_TABLE_OCCURENCE = "CREATE TABLE occurence(
