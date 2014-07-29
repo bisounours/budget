@@ -15,10 +15,6 @@
 		$user = new user(null,$txt_login,md5(sha1($txt_password.$hash)),$hash,$txt_mail);
 		$user->insert($database);
 
-		//Le premier utilisateur est forcement admin
-		$param = new parametre(null,parametre::$PARAM_ADMIN,"1",$user->get_id());
-		$param->insert($database);
-
 		header("location:../index.php");	
 	}
 

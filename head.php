@@ -22,6 +22,9 @@
     	}
 	}
 
+	//Affichage des erreurs PHP
+	ini_set('display_errors', 1);
+
 	//Enregistrement de la fonction autoload dans le registre
 	spl_autoload_register('autoload');
 
@@ -30,72 +33,33 @@
 	RainTPL::$cache_dir = "tmp/"; // cache directory
 	$template = new RainTPL();
 
+	$connected_user = false;
+
+
 	//Test existante base de donnée
 	//=====================================================================
-	if(!file_exists("./data/finance.sqlite3")){
+	if(!file_exists("./data/famille.sqlite3")){
 		require_once("./data/install.php");
 		$database = install();
 	}else{
-		$database = dao::connect("./data/finance.sqlite3");
-	}
-
-	
+		$database = dao::connect("./data/famille.sqlite3");
+	}	
 
 	//Test connexion utilisateur
 	//=====================================================================
 	if(!isset($_SESSION["user"])){
-		$liste_user = user::select($database,null);
-		//il existe au moins un user
-		if(sizeof($liste_user) > 0){
-			if(isset($_GET["bad"])){
-				$template->assign("message","Utilisateur inconnu");
-			}else{
-				$template->assign("message","");
-			}
-			$template->draw('identification');
-		}else{
-			//pas d'utilisateur, on redirige vers le formulaire de création de user
-			$template->draw('first_create_user');
-		}
-		exit;
+		$connected_user = false;
 	}else{
 		$user = unserialize($_SESSION["user"]);
+		$connected_user = true;
 	}
 
-	//Compte bancaire actif
-	//=====================================================================
-	$qualifier_user = new qualifier(parametre::$KEY_USER_ID,qualifier::$EQUAL,$user[user::$KEY_ID]);
-	$qualifier_compte_bancaire = new qualifier(parametre::$KEY_LIBELLE,qualifier::$EQUAL,parametre::$PARAM_COMPTE_BANCAIRE);
-	$qualifier_and_user_compte = new qualifier_link(qualifier_link::$AND,array($qualifier_user,$qualifier_compte_bancaire));
+	$template->assign("connected_user",$connected_user);
+	$template->assign("message","");
 
-	$liste_param = parametre::select($database,$qualifier_and_user_compte);
-	if(sizeof($liste_param) > 0){
-		$compte_bancaire_actif = $liste_param[0]->variables;
-	}else{
-		//si le parametre n'existe pas encore, on l'ajoute en base en l'activant
-		$param = new parametre(null,parametre::$PARAM_COMPTE_BANCAIRE,"1",$user[user::$KEY_ID]);
-		$param->insert($database);
-		$compte_bancaire_actif = $param->variables;
+	if(isset($_GET["do"]) && isset($_GET["do"]) == "identification"){
+		$template->draw('identification');
 	}
 
-	//Compte admin
-	//=====================================================================
-	$qualifier_user = new qualifier(parametre::$KEY_USER_ID,qualifier::$EQUAL,$user[user::$KEY_ID]);
-	$qualifier_admin = new qualifier(parametre::$KEY_LIBELLE,qualifier::$EQUAL,parametre::$PARAM_ADMIN);
-	$qualifier_and_user_compte = new qualifier_link(qualifier_link::$AND,array($qualifier_user,$qualifier_admin));
-
-	$liste_param = parametre::select($database,$qualifier_and_user_compte);
-	if(sizeof($liste_param) > 0){
-		$compte_admin = $liste_param[0]->variables;
-	}else{
-		//si le parametre n'existe pas encore, on l'ajoute en base en le desactivant
-		$param = new parametre(null,parametre::$PARAM_ADMIN,"0",$user[user::$KEY_ID]);
-		$param->insert($database);
-		$compte_admin = $param->variables;
-	}
-
-	$template->assign("compte_actif",$compte_bancaire_actif);
-	$template->assign("admin",$compte_admin);
-
-	$titre_appli = "G&euro;stion";
+	$titre_appli = "G&eacute;n&eacute;-Arbre";
 ?>

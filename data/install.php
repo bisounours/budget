@@ -7,49 +7,6 @@
 	//fonction creant la base sqlite avec les tables et renvoyant l'objet database
 	function install(){
 
-		$SQL_CREATE_TABLE_CATEGORIE = "CREATE TABLE categorie(
-			id INTEGER NOT NULL PRIMARY KEY ASC ,
-			libelle TEXT NOT NULL ,
-			user_id INTEGER NOT NULL,
-			FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE CASCADE)";
-
-		$SQL_CREATE_TABLE_COMPTE = "CREATE TABLE compte(
-			id INTEGER NOT NULL PRIMARY KEY ASC ,
-			libelle TEXT NOT NULL ,
-			user_id INTEGER NOT NULL,
-			FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE CASCADE)";
-
-		$SQL_CREATE_TABLE_OCCURENCE = "CREATE TABLE occurence(
-			id INTEGER NOT NULL PRIMARY KEY ASC ,
-			dateDebut INTEGER NOT NULL ,
-			dateFin INTEGER ,
-			montant REAL NOT NULL ,
-			type TEXT NOT NULL ,
-			user_id INTEGER NOT NULL,
-			compte_id INTEGER NOT NULL,
-			categorie_id INTEGER NOT NULL,
-			libelle TEXT NOT NULL ,
-			frequence TEXT NOT NULL ,
-			FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE CASCADE,
-			FOREIGN KEY(compte_id) REFERENCES compte(id) ,
-			FOREIGN KEY(categorie_id) REFERENCES categorie(id))";
-
-		$SQL_CREATE_TABLE_OPERATION = "CREATE TABLE operation(
-			id INTEGER NOT NULL PRIMARY KEY ASC ,
-			date INTEGER NOT NULL ,
-			montant REAL NOT NULL ,
-			type TEXT NOT NULL ,
-			categorie_id INTEGER NOT NULL,
-			user_id INTEGER NOT NULL,
-			compte_id INTEGER NOT NULL,
-			libelle TEXT NOT NULL ,
-			occurence_id INTEGER NOT NULL,
-			actif INTEGER NOT NULL,
-			FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE CASCADE,
-			FOREIGN KEY(compte_id) REFERENCES compte(id) ,
-			FOREIGN KEY(categorie_id) REFERENCES categorie(id) ,
-			FOREIGN KEY(occurence_id) REFERENCES occurence(id) )";
-
 		$SQL_CREATE_TABLE_USER = "CREATE TABLE user(
 			id INTEGER NOT NULL PRIMARY KEY ASC ,
 			login TEXT NOT NULL ,
@@ -57,21 +14,25 @@
 			hash TEXT NOT NULL ,
 			mail TEXT NOT NULL )";
 
-		$SQL_CREATE_TABLE_PARAMETRE = "CREATE TABLE parametre(
+		$SQL_CREATE_TABLE_INDIVIDU = "CREATE TABLE individu(
 			id INTEGER NOT NULL PRIMARY KEY ASC ,
-			libelle TEXT NOT NULL ,
-			valeur TEXT NOT NULL ,
-			user_id INTEGER NOT NULL,
-			FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE CASCADE)";
+			nom TEXT NOT NULL ,
+			prenom TEXT ,
+			date_naissance INTEGER ,
+			date_deces INTEGER ,
+			id_pere INTEGER ,
+			id_mere INTEGER )";
 
-		$database = new SQLite3('./data/finance.sqlite3');
+		$SQL_CREATE_TABLE_CONJOINT = "CREATE TABLE conjoint(
+			id INTEGER NOT NULL PRIMARY KEY ASC ,
+			id_individu1 INTEGER NOT NULL ,
+			id_individu2 INTEGER NOT NULL )";
+
+		$database = new SQLite3('./data/famille.sqlite3');
 
 		$database->exec($SQL_CREATE_TABLE_USER);
-		$database->exec($SQL_CREATE_TABLE_CATEGORIE);
-		$database->exec($SQL_CREATE_TABLE_COMPTE);
-		$database->exec($SQL_CREATE_TABLE_OCCURENCE);
-		$database->exec($SQL_CREATE_TABLE_OPERATION);
-		$database->exec($SQL_CREATE_TABLE_PARAMETRE);
+		$database->exec($SQL_CREATE_TABLE_INDIVIDU);
+		$database->exec($SQL_CREATE_TABLE_CONJOINT);
 
 		return $database;
 	}

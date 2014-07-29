@@ -1,7 +1,0 @@
-<label class="select">
-	<select id="lst_compte" name="lst_compte" size="1">
-		{loop="compte_list"}
-			<option value="{$value.id}" {if condition="$compte_select && $compte_select == $value.id"} selected {/if}>{$value.libelle}</option>
-		{/loop}
-	</select>
-</label>

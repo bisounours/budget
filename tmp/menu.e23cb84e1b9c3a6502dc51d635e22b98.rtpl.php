@@ -1,77 +1,14 @@
 <?php if(!class_exists('raintpl')){exit;}?><div id="menu">
-	<ul onclick="window.location = './index.php'">
-		<div id="logo">&euro;</div>
-	</ul>
-	<ul onclick="deroule(this)">
-		<li>
-			Op&eacute;rations
-			<ul class='sous_menu'>
-				<li>
-					<a href="liste_operation.php">Liste des op&eacute;rations</a>
-				</li>
-				<li>
-					<a href="create_operation.php">Ajouter une op&eacute;ration</a>
-				</li>
-			</ul>
-		</li>
-	</ul>
-	<ul onclick="deroule(this)">
-		<li>
-			Statistique
-			<ul class='sous_menu'>
-				<li>
-					<a href="stat_graphique.php">Graphique</a>
-				</li>
-				<li>
-					<a href="stat_tableau.php">Tableau</a>
-				</li>
-			</ul>
-		</li>
-	</ul>
-	<ul onclick="deroule(this)"> 
-		<li>
-			Param&eacute;trage
-			<ul class='sous_menu'>
-				<li>
-					<a href="categorie.php">Cat&eacute;gorie</a>
-				</li>
-				<?php if( $compte_actif["valeur"] == '1' ){ ?>
+	<?php if( $connected_user ){ ?>
 
-					<li>
-						<a href="compte.php">Compte Bancaire</a>
-					</li>
-				<?php } ?>
+		<ul>
+			<li><a href="compte.php">Gestion membres</a><li>
+		</ul>
+	<?php }else{ ?>
 
-				<?php if( $admin["valeur"] == '0' ){ ?>
+		<ul>
+			<li><a href="index.php?do=identification">Administration</a><li>
+		</ul>
+	<?php } ?>
 
-				<li>
-					<a href="gestion_user.php">Votre Compte</a>
-				</li>
-				<?php }else{ ?>
-
-				<li>
-					<a href="gestion_user.php">Gestion des comptes utilisateurs</a>
-				</li>
-				<?php } ?>
-
-				<li>
-					<a href="configuration.php">Configuration</a>
-				</li>
-			</ul>
-		</li>
-	</ul>
-	<a id="lnk_deconnexion" href="./traitement/identification.php?fonction=deconnexion"><div id="deconnexion"></div></a>
-	<script type="text/javascript">
-		function deroule(elem){
-			var liste_all_ul = document.getElementsByClassName('sous_menu');
-			for (var i = liste_all_ul.length - 1; i >= 0; i--) {
-				liste_all_ul[i].style.display = "none";
-			}
-
-			var liste_ul = elem.getElementsByTagName('ul');
-			for (var i = liste_ul.length - 1; i >= 0; i--) {
-				liste_ul[i].style.display = "block";
-			}
-		}
-	</script>
 </div>
