@@ -17,7 +17,7 @@ input[type="text"],input[type="password"]{
 	margin-left: -225px;
 	padding-bottom: 20px;
 	top:0px;
-	background-color: #0B610B;
+	background-color: #0174DF;
 	border-radius: 0 0 30px 30px;
 	text-align: center;
 	color: white;
@@ -30,7 +30,7 @@ input[type="text"],input[type="password"]{
 }
 
 #euro{
-	font-size: 80px;
+	font-size: 100px;
 }
 
 #message{

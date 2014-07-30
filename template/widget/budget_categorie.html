@@ -1,0 +1,66 @@
+<div id="widget_budget_categorie">
+	<h1><div class="cache_detail" data-detail="liste_budget"></div>Budget mensuel par catégorie</h1>
+	<ul id="liste_budget">
+		{loop="$liste_categorie"}
+			{if condition="$value.budget != ''"}
+			<li>
+				{$value.libelle}
+				<div class="budget">
+					<div  class="budget_categorie">
+						{$value.budget} &euro;
+					</div>
+					<div class="depense">
+						{$value.budget_utilise} &euro;
+					</div>
+					<div class="restant">
+						{$value.budget_restant} &euro;
+					</div>
+				</div>
+			</li>
+			{/if}
+		{/loop}
+	</ul>
+</div>
+
+<script type="text/javascript">
+	window.addEventListener('load', function() {
+		var liste_budget = document.getElementsByClassName('budget');
+		for(var i = 0;i < liste_budget.length;i++){
+			var budget = liste_budget[i];
+			var restant = budget.childNodes[5];
+			var depense = budget.childNodes[3];
+			var budget_categorie = budget.childNodes[1];
+
+			var montant_depense = parseFloat(depense.innerHTML.trim().substr(0,depense.innerHTML.trim().length - 2));
+			var montant_budget = parseFloat(budget_categorie.innerHTML.trim().substr(0,budget_categorie.innerHTML.trim().length - 2));
+			var montant_restant = parseFloat(restant.innerHTML.trim().substr(0,restant.innerHTML.trim().length - 2));
+
+			if(montant_depense <= 0 && montant_budget >= montant_depense){
+				depense.style.display = "none";
+			}else if(montant_depense > 0 && montant_budget < montant_depense){
+				depense.style.width = "100%";
+			}else{
+				var taille = montant_budget > 0 ? ((montant_depense * 100) / montant_budget) : "100%";
+				if(taille > 100){
+					depense.style.width = "100%";
+				}else if(taille < 100 && taille > 90){
+					depense.style.width = "90%";
+				}else{
+					depense.style.width = parseInt(taille) + "%";
+				}
+			}
+			
+			var taille = parseInt(((montant_budget * 100) / montant_depense)) < 10 ? 10 : parseInt(((montant_budget * 100) / montant_depense));
+			budget_categorie.style.width = montant_depense <= montant_budget ? "100%" : taille + "%";
+
+			if(montant_restant <= 0 && montant_depense > 0){
+				restant.style.display = "none";
+			}else if(montant_restant <= 0 && montant_depense <= 0){
+				restant.style.width = "100%";
+			}else{
+				var taille = (100 - parseInt(((montant_depense * 100) / montant_budget)));
+				restant.style.width = taille < 10 ? "10%" : taille + "%" ;
+			}			
+		}
+	});
+</script>

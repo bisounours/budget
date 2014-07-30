@@ -1,0 +1,79 @@
+/* PARTIE DE RECHERCHE AVANCEE */
+/* ============================================================== */
+#div_recherche{
+	position:absolute;
+	top: 45px;
+	width: 35%;
+	height:92%;
+	overflow: auto;
+	left: 5px;
+	padding-top: 15px;
+	text-align: center;
+}
+
+#tab_recherche_avancee{
+	border-collapse: collapse;
+}
+
+#tab_recherche_avancee td{
+	padding: 5px;
+}
+
+#tab_recherche_avancee tr td{
+	text-align: left;
+}
+
+#tab_recherche_avancee tr td:first-child{
+	text-align: right;
+}
+
+/* PARTIE OPTION GRAPHIQUE */
+/* ============================================================== */
+
+#tab_option_graphique{
+	margin: auto;
+}
+
+#tab_option_graphique{
+	border-collapse: collapse;
+}
+
+#tab_option_graphique td{
+	padding: 5px;
+}
+
+#tab_option_graphique tr td{
+	text-align: left;
+}
+
+#tab_option_graphique tr td:first-child{
+	text-align: right;
+}
+
+#liste_graphique{
+	margin-bottom: 10px;
+}
+
+#liste_graphique table{
+	width: 100%;
+}
+
+#liste_graphique table tr td:last-child{
+	text-align: left;
+	padding: 0px;
+}
+
+#btn_generer_graphique{
+	margin-top: 20px;
+}
+
+/* PARTIE GRAPHIQUE */
+/* ============================================================== */
+
+#div_graphique{
+	position:absolute;
+	top: 100px;
+	width: 60%;
+	height:600px;
+	left:37%;
+}

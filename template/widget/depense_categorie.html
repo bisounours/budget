@@ -1,0 +1,13 @@
+<div id="widget_depense_categorie">
+	<h1><div class="cache_detail" data-detail="div_graphique"></div>Dépense par carégorie depuis 1 mois</h1>
+	<div id="div_graphique">
+	</div>
+</div>
+<script type="text/javascript">
+	var url = "./traitement/widget.php";
+    ajax.post(url,generer,"fonction=pie_categorie");
+
+    function generer(json){
+    	eval(json);
+	}
+</script>

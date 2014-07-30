@@ -28,13 +28,11 @@
     	}
 	}
 
-	ini_set('display_errors', 1);
-
 	//Enregistrement de la fonction autoload dans le registre
 	spl_autoload_register('autoload');
 
 	//Initialisation de la base de donnée SQLite
-	$database = dao::connect("../data/famille.sqlite3");
+	$database = dao::connect("../data/finance.sqlite3");
 
 	//Association d'une fonction php à une nouvelle fonction SQLite 
 	$database->createFunction('replace_accent','outils::replace_accent',1);

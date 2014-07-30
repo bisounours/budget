@@ -1,0 +1,113 @@
+<h1>Modifier cette op&eacute;ration</h1>
+<table id="tab_update_operation">
+	<tr>
+		<td></td>
+		<td>
+			<input type="radio" id="rd_depense" name="rd_type" value="D" {if condition="$operation.type == 'D'"}checked{/if}/>
+			<label for="rd_depense">Depense</label>
+			<input type="radio" id="rd_revenu" name="rd_type" value="R" {if condition="$operation.type == 'R'"}checked{/if}/>
+			<label for="rd_revenu">Revenu</label>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Libell&eacute; : 
+		</td>
+		<td class="td_align_gauche">
+			<input type="text" id="txt_libelle" name="txt_libelle" class="input_large" data-type="string" data-label="Le libellé" value="{$operation.libelle}"/>
+			<input type="hidden" id="hid_id" name="hid_id" value="{$operation.id}"/>
+			{if condition="$operation.frequence"}
+			<input type="hidden" id="hid_frequence_id" name="hid_frequence_id" value="{$operation.frequence.id}"/>
+			{/if}
+		</td>
+		<td>
+			Date : 
+		</td>
+		<td id="td_date" class="td_align_gauche">
+			{if condition="$operation.frequence"}
+				{$operation.date|substr:6}/{$operation.date|substr:4,2}/{$operation.date|substr:0,4}
+			{else}
+				<input type="text" id="txt_date_operation" name="txt_date_operation" placeholder="jj/mm/aaaa" class="input_medium" data-type="date" data-label="La date" value="{$operation.date|substr:6}/{$operation.date|substr:4,2}/{$operation.date|substr:0,4}"/>
+			{/if}
+		</td>			
+	</tr>
+	<tr>
+		<td>
+			Montant : 
+		</td>
+		<td class="td_align_gauche">
+			<input type="text" id="txt_montant" name="txt_montant" class="input_medium" data-type="double" data-label="Le montant" value="{$operation.montant|number_format:2,',',''}"/> &euro;
+		</td>
+		<td class = "td_frequence">
+			Fr&eacute;quence : 
+		</td>
+		<td id = "td_frequence" class="td_align_gauche" colspan="2">
+			{if condition="$operation.frequence"}
+				Tous les {$operation.frequence.frequence|substr:1,-1} 
+				{if condition="substr($operation.frequence.frequence,-1) == 'M' "}
+					mois
+				{/if}
+				{if condition="substr($operation.frequence.frequence,-1) == 'D' "}
+					jour(s)
+				{/if}
+				{if condition="substr($operation.frequence.frequence,-1) == 'Y' "}
+					an(s)
+				{/if}
+			{else}
+				Ponctuelle
+			{/if}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Cat&eacute;gorie : 
+		</td>
+		<td class="td_align_gauche">
+			{include="composant/liste_categorie"}
+		</td>
+		{if="$operation.frequence != ''"}
+			{if="$operation.frequence.dateFin != ''"}
+			<td class="td_arret">
+				Arrêté le :
+			</td>
+			<td class="td_arret td_align_gauche" id="td_date_arret">
+				{$operation.frequence.dateFin|substr:6}/{$operation.frequence.dateFin|substr:4,2}/{$operation.frequence.dateFin|substr:0,4}
+			</td>
+			{/if}
+		{/if}
+	</tr>
+	{if condition="$compte_actif.valeur == '1'"}
+	<tr>
+		<td>
+			Compte : 
+		</td>
+		<td class="td_align_gauche">
+			{include="composant/liste_compte"}
+		</td>
+	</tr>
+	{/if}
+	{if="$operation.frequence"}
+	<tr>
+		<td class="td_type_modification" colspan="2">
+			Appliquer :
+		</td>
+		<td class="td_type_modification" colspan="2" >
+			<label class="select">
+				<select id="lst_type_modification" name="lst_type_modification" class="select_large">
+					<option value="U">Uniquement &agrave; cette op&eacute;ration</option>
+					<option value="A">A toutes les op&eacute;rations</option>
+				</select>
+			</label>
+		</td>
+	</tr>
+	{/if}
+	<tr>
+		<td colspan = "4" >
+			{if="$operation.frequence"}
+			<button id="btn_arreter" class="btn_gris" onclick="lancer_arret()">Arr&ecirc;ter</button>
+			{/if}
+			<button id="btn_supprimer" class="btn_gris" onclick="lancer_suppression()">Supprimer</button>
+			<button id="btn_modifier" onclick="modifier()">Modifier</button>
+		</td>
+	</tr>
+</table>

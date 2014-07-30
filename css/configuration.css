@@ -1,0 +1,15 @@
+/* FICHIER CSS POUR LA PAGE CONFIGURATION.HTML */
+/* ========================================================= */
+
+/* DIV GESTION CONFIG */
+/* ========================================================= */
+
+
+#div_configuration{
+	width: 500px;
+}
+
+#div_configuration button{
+	margin-left: -200px;
+	margin-top: 50px;
+}
